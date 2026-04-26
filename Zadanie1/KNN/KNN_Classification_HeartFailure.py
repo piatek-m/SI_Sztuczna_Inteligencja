@@ -1,3 +1,5 @@
+# Użyty dataset: https://huggingface.co/datasets/mstz/heart_failure
+
 import numpy as np
 import pandas as pd
 
@@ -5,8 +7,6 @@ from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSe
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.preprocessing import StandardScaler
-
-# Użyty dataset: https://huggingface.co/datasets/mstz/heart_failure
 
 # Loading data
 local_path = "Zadanie1/KNN/data/"
