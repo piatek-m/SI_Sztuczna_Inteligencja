@@ -1,0 +1,11 @@
+# Data repositories
+data/
+
+# Virtual environment
+venv/
+
+# Wykład 
+Wykład 1.md
+
+# Laboratoria
+Lab*/
