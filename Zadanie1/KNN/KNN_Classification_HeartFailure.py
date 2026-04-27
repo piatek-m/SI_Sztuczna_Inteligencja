@@ -1,6 +1,5 @@
 # Użyty dataset: https://huggingface.co/datasets/mstz/heart_failure
 
-import numpy as np
 import pandas as pd
 
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
@@ -78,7 +77,7 @@ random = RandomizedSearchCV(
     cv=5,
 )
 random.fit(X_train_scaled, y_train)
-y_pred = grid.predict(X_test_scaled)
+y_pred = random.predict(X_test_scaled)
 print("\nBest parameters (random):\n", random.best_params_)
 
 # Train with best params found by random
