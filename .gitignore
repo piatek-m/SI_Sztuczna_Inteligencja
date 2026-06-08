@@ -21,3 +21,6 @@ requirements_lab.txt
 
 # Dataset projektowy
 Projekt/Food_and_Vegetables
+
+# Modyfikacje inputu
+!Projekt/data
