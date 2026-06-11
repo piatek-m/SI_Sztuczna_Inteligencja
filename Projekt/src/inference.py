@@ -1,11 +1,14 @@
 import json
 import torch
-import torch.nn as nn
-from torchvision import models, transforms
-from PIL import Image
+from models.model import build_model
+from src.config import PROJECT_DIR, ASSETS_DIR, MODELS_DIR, DEVICE
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-NUM_CLASSES = 36
-
-with open("class_names.json", "r") as f:
+# Classes
+with open(ASSETS_DIR / "class_names.json", "r") as f:
     CLASS_NAMES = json.load(f)
+num_classes = len(CLASS_NAMES)
+
+model = build_model(num_classes)
+model.load_state_dict(torch.load(MODELS_DIR / "fruits_model.pth", map_location=DEVICE))
+model = model.to(DEVICE)
+model.eval()

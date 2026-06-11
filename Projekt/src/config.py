@@ -1,3 +1,5 @@
+import torch
+import json
 from pathlib import Path
 
 # Paths
@@ -17,3 +19,6 @@ IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 RESIZE = 256
 CROP = 224
+
+# CUDA
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

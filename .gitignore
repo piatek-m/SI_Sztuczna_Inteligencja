@@ -13,6 +13,9 @@ Lab*/
 # Output
 **/output_*.txt
 
+# Cache
+__pycache__
+
 # Wyniki do wysłania na MS-Teams
 Wyniki/
 

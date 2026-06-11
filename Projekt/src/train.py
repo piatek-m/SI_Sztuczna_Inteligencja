@@ -5,11 +5,10 @@ from torch.utils.data import DataLoader, Subset
 from PIL import Image
 import json
 
-from src.config import DATA_DIR, ASSETS_DIR, MODELS_DIR, BATCH_SIZE, EPOCHS, LR
+from src.config import DATA_DIR, ASSETS_DIR, MODELS_DIR, BATCH_SIZE, EPOCHS, LR, DEVICE
 from data.transforms import train_transform, test_transform
 from models.model import build_model
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Training on: {DEVICE}")
 
 
