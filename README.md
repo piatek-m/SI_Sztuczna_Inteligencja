@@ -24,6 +24,8 @@ Wykorzystano uczenie transferowe. Jako podstawy użyto [_MobileNetV3-Large_](htt
 
 Zastosowano scheduler learning rate ```ReduceLROnPlateau```. Zrezygnowano z CosineannealingLR z powodu zbyt małego datasetu.
 
+---
+
 ## Zadanie KNN, DT, RF - użyte datasety:
 > Linki są także zakomentowane w plikach .py w pierwszej linii.
 - [KNN](https://huggingface.co/datasets/mstz/heart_failure)
