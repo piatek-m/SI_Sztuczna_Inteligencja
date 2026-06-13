@@ -1,0 +1,40 @@
+               precision    recall  f1-score   support
+
+        apple       0.83      0.56      0.67         9
+       banana       0.86      0.75      0.80         8
+     beetroot       0.91      1.00      0.95        10
+  bell pepper       0.76      0.81      0.79        16
+      cabbage       1.00      1.00      1.00         9
+       carrot       1.00      1.00      1.00         8
+  cauliflower       1.00      1.00      1.00        10
+chilli pepper       0.54      0.88      0.67         8
+     cucumber       1.00      1.00      1.00         9
+     eggplant       0.91      1.00      0.95        10
+       garlic       1.00      1.00      1.00        10
+       ginger       1.00      1.00      1.00         9
+       grapes       1.00      1.00      1.00         9
+     jalepeno       0.89      0.89      0.89         9
+         kiwi       1.00      1.00      1.00        10
+        lemon       0.67      1.00      0.80        10
+      lettuce       1.00      0.89      0.94         9
+        mango       0.80      0.80      0.80        10
+        onion       1.00      1.00      1.00         9
+       orange       0.80      0.50      0.62         8
+      paprika       1.00      0.44      0.62         9
+         pear       0.88      1.00      0.93         7
+         peas       1.00      0.90      0.95        10
+    pineapple       1.00      1.00      1.00        10
+  pomegranate       1.00      1.00      1.00         9
+       potato       0.67      0.60      0.63        10
+      raddish       1.00      1.00      1.00         8
+    soy beans       0.91      1.00      0.95        10
+      spinach       0.91      1.00      0.95        10
+    sweetcorn       1.00      1.00      1.00        18
+  sweetpotato       0.71      0.71      0.71         7
+       tomato       0.89      0.89      0.89         9
+       turnip       1.00      0.89      0.94         9
+   watermelon       1.00      1.00      1.00        10
+
+     accuracy                           0.90       326
+    macro avg       0.91      0.90      0.90       326
+ weighted avg       0.91      0.90      0.90       326
