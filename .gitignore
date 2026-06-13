@@ -22,8 +22,12 @@ Wyniki/
 # Z labów
 requirements_lab.txt
 
-# Dataset projektowy
-Projekt/Food_and_Vegetables
+# --- Projekt ---
 
-# Modyfikacje inputu
-!Projekt/data
+# Transformacje danych
+!Projekt/src/data
+# Skrypt z HSA_OVERRIDE oraz PYTHONPATH
+exports.sh
+
+# ROCm test stuff
+ROCm/
