@@ -1,4 +1,5 @@
 import time
+from typing import cast
 import torch
 import cv2
 from torchvision import transforms
@@ -8,12 +9,6 @@ from src.models.model import build_model
 from src.data.transforms import test_transform
 from src.data.dataset import get_classes
 from src.config import (
-    IMAGENET_MEAN,
-    IMAGENET_STD,
-    RESIZE,
-    CROP,
-    PROJECT_DIR,
-    ASSETS_DIR,
     MODELS_DIR,
     DEVICE,
     INFERENCE_INTERVAL,
@@ -22,7 +17,7 @@ from src.config import (
 classes = get_classes()
 num_classes = len(classes)
 
-model = build_model(num_classes)
+model = build_model(num_classes).to(DEVICE)
 model.load_state_dict(torch.load(MODELS_DIR / "best_model.pth", map_location=DEVICE))
 model.eval()
 
@@ -32,11 +27,11 @@ inference_transform = test_transform
 def predict(frame):
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     img = Image.fromarray(rgb)
-    tensor = inference_transform(frame).unsqueeze(0).to(DEVICE)
+    tensor = cast(torch.Tensor, inference_transform(img)).unsqueeze(0).to(DEVICE)
     with torch.no_grad():
         outputs = model(tensor)
         probabilities = torch.softmax(outputs, dim=1)
-        confidence, predicted = probabilities.max()
+        confidence, predicted = probabilities.max(dim=1)
     return classes[predicted.item()], confidence.item()
 
 
