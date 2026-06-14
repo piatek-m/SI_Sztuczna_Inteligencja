@@ -15,6 +15,7 @@ from src.config import (
     CLASSIFIER_EPOCHS,
     CLASSIFIER_LR,
     DEVICE,
+    MIXUP_ALPHA,
 )
 from src.data.dataset import get_train_val_loaders, get_dataset
 from src.models.model import build_model
@@ -42,7 +43,7 @@ model = build_model(num_classes).to(DEVICE)
 
 # --- Training logic ---
 
-
+""" 
 def run_epoch(model, loader, criterion, optimizer, device, training: bool):
     model.train() if training else model.eval()
     total_loss = 0
@@ -68,6 +69,42 @@ def run_epoch(model, loader, criterion, optimizer, device, training: bool):
 
         avg_loss = total_loss / len(loader)
         accuracy = 100 * correct / total
+    return avg_loss, accuracy """
+
+mixup = v2.MixUp(num_classes=num_classes, alpha=MIXUP_ALPHA)
+
+
+def run_epoch(model, loader, criterion, optimizer, device, training: bool):
+    model.train() if training else model.eval()
+    total_loss = 0
+    correct = total = 0
+
+    with torch.set_grad_enabled(training):
+        for images, labels in loader:
+            images, labels = images.to(device), labels.to(device)
+
+            if training:
+                images, labels = mixup(images, labels)
+                optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+            if training:
+                loss.backward()
+                optimizer.step()
+            total_loss += loss.item()
+            _, predicted = outputs.max(1)
+
+            if training:
+                targets = labels.argmax(dim=1)
+            else:
+                targets = labels
+
+            total += targets.size(0)
+            correct += predicted.eq(targets).sum().item()
+
+    avg_loss = total_loss / len(loader)
+    accuracy = 100 * correct / total
     return avg_loss, accuracy
 
 
@@ -166,7 +203,7 @@ run_phase(
 )
 
 # Phase 2
-model.load_state_dict(torch.load(CHECKPOINTS_DIR / "best_accuracy_model.pth"))
+model.load_state_dict(torch.load(CHECKPOINTS_DIR / "smallest_loss_model.pth"))
 
 for param in model.parameters():
     param.requires_grad = True
