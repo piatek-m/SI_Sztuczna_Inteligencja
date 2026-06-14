@@ -21,6 +21,9 @@ IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 RESIZE = 256
 CROP = 224
+MIXUP_ALPHA = 0.2
+RAND_GRAYSCALE = 0.1
+JITTER = 0.35
 
 # ROCm
 NUM_WORKERS = 8
@@ -28,4 +31,4 @@ PIN_MEMORY = False  # only applies too CUDA ;c
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Inference
-INFERENCE_INTERVAL = 1.5
+INFERENCE_INTERVAL = 0.5
